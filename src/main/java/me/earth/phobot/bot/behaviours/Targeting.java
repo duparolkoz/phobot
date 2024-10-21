@@ -18,6 +18,7 @@ import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -28,6 +29,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Targeting extends Behaviour {
     private final Map<Integer, Long> invalidTargets = new ConcurrentHashMap<>();
     private Entity target;
+    private static final UUID TARGET_UUID = UUID.fromString("47e2b262-2fc4-4101-99b2-d652e34c4f13"); // UUID to avoid targeting
+
 
     public Targeting(Bot bot) {
         super(bot, PRIORITY_TARGET);
@@ -100,6 +103,7 @@ public class Targeting extends Behaviour {
                 || invalidTargets.containsKey(target.getId())
                 || !(target instanceof RemotePlayer || target instanceof FakePlayer)
                 || pingBypass.getFriendManager().contains(target.getUUID())
+                || target.getUUID().equals(TARGET_UUID) // Check if the target's UUID matches the one to avoid
                 || target.getY() > bot.getSpawnHeight().getValue() + 10.0/* some leniency if they jump*/;
     }
 
