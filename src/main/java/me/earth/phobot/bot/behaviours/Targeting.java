@@ -29,7 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Targeting extends Behaviour {
     private final Map<Integer, Long> invalidTargets = new ConcurrentHashMap<>();
     private Entity target;
-    private static final UUID TARGET_UUID = UUID.fromString("47e2b262-2fc4-4101-99b2-d652e34c4f13"); // UUID to avoid targeting
+    private static final UUID TARGET_UUID = UUID.fromString("aabc4dce-2d6f-43cd-9c70-7f6af7dd2f36"); // UUID to avoid targeting
 
 
     public Targeting(Bot bot) {
